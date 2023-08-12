@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { ShoppingCartIcon, LibraryIcon } from 'lucide-react';
+import { ShoppingCartIcon, LibraryIcon, UserIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Header: React.FunctionComponent= () => {
     const navigate = useNavigate();
+    const { user } = useAuth();
 
     return (
         <div>
@@ -13,18 +15,36 @@ const Header: React.FunctionComponent= () => {
               </h1>
     
               <div className='flex flex-row'>
-                <button 
-                  className='bg-white w-[8rem] h-[3rem] rounded'
-                  onClick={() => navigate("/auth")}
-                >
-                  Login
-                </button>
-                <button 
-                  className='bg-white w-[8rem] h-[3rem] ml-10 rounded'
-                  onClick={() => navigate("/auth")}
-                >
-                  Cadastro
-                </button>
+
+                <div>
+                  { user
+                    ? ( <button 
+                          className='bg-white w-[10rem] h-[3rem] rounded flex flex-row items-center justify-center'
+                          onClick={() => navigate("/auth")}
+                        >
+                          <UserIcon />
+                          <h1 className='ml-2'>Minha Conta</h1>
+                        </button>
+                    ) : (
+                      <div>
+                        <button 
+                          className='bg-white w-[8rem] h-[3rem] rounded'
+                          onClick={() => navigate("/auth")}
+                        >
+                          Login
+                        </button>
+                        <button 
+                          className='bg-white w-[8rem] h-[3rem] ml-10 rounded'
+                          onClick={() => navigate("/auth")}
+                        >
+                          Cadastro
+                        </button>
+                      </div>
+                    )
+                  }
+
+
+                </div>
 
                 <button className='bg-white w-[10rem] h-[3rem] ml-20 rounded flex flex-row items-center justify-center'>
                     <ShoppingCartIcon />
