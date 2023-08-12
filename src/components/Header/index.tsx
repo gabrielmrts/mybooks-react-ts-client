@@ -8,7 +8,7 @@ const Header: React.FunctionComponent= () => {
     return (
         <div>
             <header className='flex flex-row justify-around w-full h-[5rem] bg-black shadow-2xl items-center'>
-              <h1 className='text-white text-4xl font-bold font-sans'>
+              <h1 onClick={() => navigate("/")} className='text-white text-4xl font-bold font-sans cursor-pointer'>
                 <LibraryIcon size={25} /> MyBooks
               </h1>
     
