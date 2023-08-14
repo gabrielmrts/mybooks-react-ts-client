@@ -3,12 +3,23 @@ import { LibraryIcon, UserIcon, LogOutIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import Button from '../Button';
-import Badge from '@mui/material/Badge';
+import Badge, { BadgeProps } from '@mui/material/Badge';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { styled } from '@mui/material/styles';
+import LightTooltip from '../LightTooltip';
 
 const Header: React.FunctionComponent= () => {
 	const navigate = useNavigate();
 	const { user } = useAuth();
+
+	const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
+		'& .MuiBadge-badge': {
+			right: -12,
+			top: 13,
+			border: `2px solid ${theme.palette.background.paper}`,
+			padding: '0 4px',
+		},
+	}));
 
 	return (
 			<div>
@@ -53,14 +64,19 @@ const Header: React.FunctionComponent= () => {
 
 						</div>
 						
-						<Button 
-							hoverVariation={null}
-							className='bg-white w-[5rem] h-[3rem] ml-10 flex flex-row items-center justify-center rounded-full'
-						>
-							<Badge badgeContent={0} color="secondary" showZero>
-								<ShoppingCartIcon color="action" /> 
-							</Badge>
-						</Button>
+						<LightTooltip title="Carrinho" placement="right">
+							<div>
+								<Button 
+									hoverVariation={null}
+									className='bg-white w-[5rem] h-[3rem] ml-10 pr-5 flex flex-row items-center justify-center rounded-full'
+								>
+									<StyledBadge badgeContent={0} color="secondary" showZero>
+										<ShoppingCartIcon color="action" /> 
+									</StyledBadge>
+								</Button>
+							</div>
+						</LightTooltip>
+
 					</div>
 				</header>
 			</div>

@@ -5,9 +5,11 @@ interface IButtonProps {
     className: string;
     hoverVariation: 'dark' | 'light' | null;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
+    onMouseEnter?: () => void;
+    onMouseLeave?: () => void;
 }
 
-const Button: React.FunctionComponent<IButtonProps> = ({ children, className, hoverVariation, onClick }) => {
+const Button: React.FunctionComponent<IButtonProps> = ({ children, className, hoverVariation, onClick, onMouseEnter, onMouseLeave }) => {
   var defaultClassName = 'rounded ';
 
   if (hoverVariation == "dark") {
@@ -19,7 +21,12 @@ const Button: React.FunctionComponent<IButtonProps> = ({ children, className, ho
   defaultClassName += className
 
   return (
-    <button className={defaultClassName} onClick={onClick}>
+    <button 
+      className={defaultClassName} 
+      onClick={onClick} 
+      onMouseEnter={onMouseEnter} 
+      onMouseLeave={onMouseLeave}
+    >
       {children}
     </button>
   );
