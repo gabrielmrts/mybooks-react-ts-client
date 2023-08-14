@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
 import Auth from '../pages/Auth';
 import { AuthProvider } from '../contexts/AuthContext';
+import Verify from '../pages/Verify';
 
 const AppRoutes: React.FunctionComponent = () => {
     const queryClient = new QueryClient();
@@ -15,6 +16,7 @@ const AppRoutes: React.FunctionComponent = () => {
                     <Routes>
                         <Route path='/' Component={Home} />
                         <Route path='/auth' Component={Auth} />
+                        <Route path='/verify' Component={Verify} />
                     </Routes>
                 </BrowserRouter>
             </QueryClientProvider>

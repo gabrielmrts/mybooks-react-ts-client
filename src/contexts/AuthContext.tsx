@@ -3,6 +3,8 @@ import { IAuthContext } from "../interfaces/IAuthContext";
 import { IUserLogin } from "../interfaces/IUserLogin";
 import Api from "../services/api";
 import { IUser } from "../interfaces/IUser";
+import { ILoginResponse } from "../interfaces/ILoginResponse";
+import { AxiosError } from "axios";
 
 const AuthContext = createContext<IAuthContext | undefined>(undefined);
 
@@ -20,7 +22,6 @@ interface IAuthProviderProps {
 
 export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     const [user, setUser] = useState<IUser | null>(null);
-    const [userLogin, setUserLogin] = useState<IUserLogin | null>(null);
     
     const fetchSessionData = async (token: string) => {
         try {
@@ -49,14 +50,21 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
         }
     }, []);
 
-    const login = async (userData: IUserLogin) => {
+    const login = async (userData: IUserLogin): Promise<ILoginResponse> => {
         try {
             const response = await Api.post("/public/sessions", { ...userData });
             localStorage.setItem("token", response.data.token);
             setUser(response.data);
-            return true;
+            return { 
+                success: true,
+                message: response.data 
+            };
         } catch (e) {
-            return false;
+            const err = e as AxiosError<any>
+            return {
+                success: false,
+                message: err.response?.data.error
+            };
         }
     };
 

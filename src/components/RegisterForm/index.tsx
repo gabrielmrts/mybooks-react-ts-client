@@ -7,6 +7,10 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import Api from '../../services/api';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import { AxiosError } from 'axios';
 
 const validationSchema = yup.object({
   name: yup
@@ -27,6 +31,8 @@ const validationSchema = yup.object({
 });
 
 const RegisterForm: React.FunctionComponent = () => {
+  const [showSuccess, setShowSuccess] = React.useState<boolean>(false);
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -35,15 +41,26 @@ const RegisterForm: React.FunctionComponent = () => {
       isChecked: false,
     },
     validationSchema: validationSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      try {
+        await Api.post("/public/users", { ...values });
+        setShowSuccess(true);
+      } catch (error) {
+        formik.setFieldError('email', 'Email ja utilizado!')
+      }
+
     }
   });
 
   return (
     <div className='w-[20rem] h-[35rem] ml-10 mt-20 border black rounded shadow-xl flex flex-col items-center'>
       <h1 className='text-3xl font-bold mt-10'>Criar Conta</h1>
-
+        {showSuccess && (
+          <Alert className='w-[15rem] mt-5' severity="success">
+            <AlertTitle>Sucesso</AlertTitle>
+            <strong>Verifique seu email.</strong>
+          </Alert>
+        )}
       <div className='mt-10'>
         <form onSubmit={formik.handleSubmit}>
           <Box sx={{ display: 'flex', alignItems: 'flex-end', marginBottom: 2 }}>
@@ -107,7 +124,7 @@ const RegisterForm: React.FunctionComponent = () => {
             )}  
           </div>
 
-          <button type="submit" className='w-[15rem] h-[3rem] mt-10 border border-black rounded shadow-xl'>
+          <button type="submit" className='w-[15rem] h-[3rem] mt-6 border border-black rounded shadow-xl'>
             Cadastrar
           </button>
         </form>
