@@ -3,7 +3,7 @@ import * as React from 'react';
 interface IButtonProps {
     children: React.ReactNode;
     className: string;
-    hoverVariation: 'dark' | 'light';
+    hoverVariation: 'dark' | 'light' | null;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 

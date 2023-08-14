@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { ShoppingCartIcon, LibraryIcon, UserIcon, LogOutIcon } from 'lucide-react';
+import { LibraryIcon, UserIcon, LogOutIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import Button from '../Button';
+import Badge from '@mui/material/Badge';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Header: React.FunctionComponent= () => {
 	const navigate = useNavigate();
@@ -50,13 +52,14 @@ const Header: React.FunctionComponent= () => {
 							}
 
 						</div>
-
+						
 						<Button 
-							hoverVariation='dark'
-							className='bg-white w-[10rem] h-[3rem] ml-20 flex flex-row items-center justify-center'
+							hoverVariation={null}
+							className='bg-white w-[5rem] h-[3rem] ml-10 flex flex-row items-center justify-center rounded-full'
 						>
-							<ShoppingCartIcon />
-							<h3 className='ml-1 mr-2'>Carrinho</h3>  ( 0 )
+							<Badge badgeContent={0} color="secondary" showZero>
+								<ShoppingCartIcon color="action" /> 
+							</Badge>
 						</Button>
 					</div>
 				</header>
