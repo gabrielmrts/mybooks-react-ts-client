@@ -14,7 +14,7 @@ const Verify: React.FunctionComponent = () => {
 	const [showOk, setShowOk] = React.useState<boolean>(false);
 
 	React.useEffect(() => {
-		const response = Api.patch('/public/users/email', { code })
+		const response = Api.post('/public/users/email', { code })
 			.then((res) => setShowOk(true))
 			.catch((err) => setShowError(true))
 	}, []);

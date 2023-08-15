@@ -99,7 +99,7 @@ const LoginForm: React.FunctionComponent = () => {
           </button>
 
           <div className='mt-10'>
-            <a className='text-cyan-600	underline' href="">Recuperar senha</a> 
+            <a className='text-cyan-600	underline' href="/recover_password">Recuperar senha</a> 
           </div>
         </div>
 
