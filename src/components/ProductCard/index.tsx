@@ -14,7 +14,7 @@ const ProductCard: React.FunctionComponent<IProductCardProps> = ({ title, price 
     const [isHovered, setIsHovered] = React.useState(false);
 
     return (
-        <div className='w-[12rem] h-[22rem] shadow-xl rounded flex flex-col items-center ml-10 mt-10'>
+        <div className='w-[12rem] h-[22rem] shadow-xl rounded flex flex-col items-center ml-3 mt-10'>
             <img src={bookCover} width={150} />
             <h3 className='font-bold'>{title}</h3>
             <h1 className='italic mt-3 mb-2 text-2xl'>R$ {price}</h1>

@@ -14,8 +14,8 @@ const Home:React.FunctionComponent = () => {
         <div className="App">
             <div className='flex flex-col'>
                 <Header />
-                
-                <div className='flex flex-row justify-center mt-5 flex-wrap'>
+                    
+                <div className='flex flex-row justify-center mt-5 mb-[18rem] flex-wrap'>
                     {
                         data && 
                         data.map((item: any) => (
@@ -27,8 +27,8 @@ const Home:React.FunctionComponent = () => {
                         )
                         )
                     }
-                </div>
 
+                </div>
                 <Footer />
             </div>
         </div>

@@ -53,7 +53,7 @@ const RegisterForm: React.FunctionComponent = () => {
   });
 
   return (
-    <div className='w-[20rem] h-[35rem] ml-10 mt-20 border black rounded shadow-xl flex flex-col items-center'>
+    <div className='w-[23rem] mb-12 h-[35rem] mt-12 border black rounded shadow-xl flex flex-col items-center'>
       <h1 className='text-3xl font-bold mt-10'>Criar Conta</h1>
         {showSuccess && (
           <Alert className='w-[15rem] mt-5' severity="success">

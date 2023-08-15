@@ -56,12 +56,17 @@ const LoginForm: React.FunctionComponent = () => {
   });
 
   return (
-    <div className='w-[20rem] h-[30rem] mt-20 border black rounded shadow-xl flex flex-col items-center'>
+    <div className='w-[23rem] h-[30rem] mb-24 mt-12 border black rounded shadow-xl flex flex-col items-center'>
       <h1 className='text-3xl font-bold mt-10'>Entrar</h1>
 
       <form onSubmit={formik.handleSubmit}>
         <div className='mt-10'>
-            <Box sx={{ display: 'flex', alignItems: 'flex-end', marginBottom: 2 }}>
+          <Box 
+            sx={{ 
+              display: 'flex', alignItems: 'flex-end', marginBottom: 2,
+              width: 240
+            }}
+          >
             <MailOutline sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
             <TextField 
               label="Email" 
@@ -75,7 +80,12 @@ const LoginForm: React.FunctionComponent = () => {
               helperText={formik.touched.email && formik.errors.email}
             />
           </Box>
-            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
+          <Box 
+            sx={{ 
+              display: 'flex', alignItems: 'flex-end', marginBottom: 2,
+              width: 240
+            }}
+          >
             <Key sx={{ color: 'action.active', mr: 1, my: 0.5 }} />
             <TextField  
               type="password"
@@ -90,9 +100,9 @@ const LoginForm: React.FunctionComponent = () => {
               helperText={formik.touched.password && formik.errors.password}
             />
           </Box>
-
+          
           <button 
-            className='w-[15rem] h-[3rem] mt-8 border border-black rounded shadow-xl'
+            className='w-[15rem] h-[3rem] ml-1 mt-8 border border-black rounded shadow-xl'
             type='submit'
           >
             Acessar

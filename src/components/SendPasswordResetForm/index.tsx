@@ -39,7 +39,7 @@ const SendPasswordResetForm: React.FunctionComponent = () => {
   return (
     <div>
       <div className='flex flex-col items-center'>
-        <div className='w-[20rem] h-[25rem] ml-10 mt-20 border black rounded shadow-xl flex flex-col items-center'>
+        <div className='w-[20rem] h-[25rem] mt-20 mb-[15rem] border black rounded shadow-xl flex flex-col items-center'>
           <h1 className='text-3xl mt-5 mb-8 font-bold'>Redefinir Senha</h1>
           <form onSubmit={formik.handleSubmit}>
             <div className='w-[15rem]'>
